@@ -4,7 +4,7 @@ import tkinter
 painting_window = tkinter.Tk()
 painting_window.geometry("800x600+100+100")
 painting_window.resizable(0, 0)
-painting_window.title("Painting Program")
+painting_window.title("그림판")
 
 # 프레임 설정
 frame_canvas = tkinter.Frame(painting_window, width = 600, height = 400, relief = "solid", bd = 2)
@@ -31,14 +31,6 @@ def paint(event):
     canvas.create_oval(x1, y1, x2, y2, fill = color, width = wid, outline = color)
 
 
-def eraser(event):
-    x2, y2 = (event.x - 1), (event.y + 1)
-    x3, y3 = (event.x + 1), (event.y - 1)
-    canvas.create_rectangle(x2, y2, x3, y3, fill = "SystemButtonFace")
-    canvas.config(cursor = "dotbox")
-    label_wid.config(text = "지우개의 굵기:" + str(wid))
-
-
 # 마우스 휠로 크기(원의) 조정
 def scroll(event):
     global wid
@@ -50,15 +42,15 @@ def scroll(event):
         if event.delta == -120:
             wid -= 1
             label_wid.config(text = "굵기:" + str(wid))
-    # if color == "SystemButtonFace":
-    #     if wid < 100:
-    #         if event.delta == 120:
-    #             wid += 1
-    #             label_wid.config(text = "지우개의 굵기:" + str(wid))
-    #     if wid > 1:
-    #         if event.delta == -120:
-    #             wid -= 1
-    #             label_wid.config(text = "지우개의 굵기:" + str(wid))
+    if color == "SystemButtonFace":
+        if wid < 100:
+            if event.delta == 120:
+                wid += 1
+                label_wid.config(text = "지우개의 굵기:" + str(wid))
+        if wid > 1:
+            if event.delta == -120:
+                wid -= 1
+                label_wid.config(text = "지우개의 굵기:" + str(wid))
 
 
 # 색 지정 커맨드
@@ -92,6 +84,13 @@ def black_color():
     now_color = "검정색"
     canvas.config(cursor = "pencil")
     label_color.config(text = "붓의 색:" + str(now_color), fg = color, bg = "SystemButtonFace")
+
+
+def eraser():
+    global color
+    color = "SystemButtonFace"
+    canvas.config(cursor = "dotbox")
+    label_wid.config(text = "지우개의 굵기:" + str(wid))
 
 
 # 라벨 생성
