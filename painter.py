@@ -60,6 +60,7 @@ def red_color():
     now_color = "빨간색"
     canvas.config(cursor = "pencil")
     label_color.config(text = "붓의 색:" + str(now_color), fg = color, bg = "SystemButtonFace")
+    label_wid.config(text = "굵기:" + str(wid))
 
 
 def yellow_color():
@@ -68,6 +69,7 @@ def yellow_color():
     now_color = "노란색"
     canvas.config(cursor = "pencil")
     label_color.config(text = "붓의 색:" + str(now_color), fg = color, bg = "black")
+    label_wid.config(text = "굵기:" + str(wid))
 
 
 def green_color():
@@ -76,6 +78,7 @@ def green_color():
     now_color = "초록색"
     canvas.config(cursor = "pencil")
     label_color.config(text = "붓의 색:" + str(now_color), fg = color, bg = "SystemButtonFace")
+    label_wid.config(text = "굵기:" + str(wid))
 
 
 def black_color():
@@ -84,6 +87,7 @@ def black_color():
     now_color = "검정색"
     canvas.config(cursor = "pencil")
     label_color.config(text = "붓의 색:" + str(now_color), fg = color, bg = "SystemButtonFace")
+    label_wid.config(text = "굵기:" + str(wid))
 
 
 def eraser():
