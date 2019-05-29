@@ -1,7 +1,9 @@
 # tkinter, tkinter 의 message box, painter의 paintering import
 import tkinter
 from painter import paintering
+from painter2 import paintering2
 from tkinter import messagebox
+
 
 # 기본 설정
 menu_window = tkinter.Tk()
@@ -15,13 +17,18 @@ def start_painter():
     menu_window.destroy()
     paintering()
 
+# button2 의 실행 문장, 그림판2 실행
+def start_painter2():
+    menu_window.destroy()
+    paintering2()
 
-# button2 의 실행 문장
+
+# button3 의 실행 문장
 def show_me():
     tkinter.messagebox.showinfo("제작자", "제작자: HealMe- or lHealMel")
 
 
-# button3 의 실행 문장
+# button4 의 실행 문장
 def closing():
     question_box = tkinter.messagebox.askquestion(title = "?", message = "정말로 종료하시겠습니까?")
     if question_box == 'yes':
@@ -36,11 +43,13 @@ hei = 1
 wid = 10
 
 # 버튼 설정
-button1 = tkinter.Button(menu_window, text = "그림판 실행", command = start_painter, height = hei, width = wid,
-                         anchor = "s").place(x = a, y = 50)
-button2 = tkinter.Button(menu_window, text = "제작자", command = show_me, height = hei, width = wid, anchor = "s").place(
+button1 = tkinter.Button(menu_window, text = "그림판 초기버전 실행", command = start_painter, height = hei,
+                         anchor = "s").place(x = 95, y = 50)
+button2 = tkinter.Button(menu_window, text = "그림판 2nd 버전 실행", command = start_painter2, height = hei,
+                         anchor = "s").place(x = 95, y = 100)
+button3 = tkinter.Button(menu_window, text = "제작자", command = show_me, height = hei, width = wid, anchor = "s").place(
     x = a, y = 200)
-button3 = tkinter.Button(menu_window, text = "종료", command = closing, height = hei, width = wid, anchor = "s").place(
+button4 = tkinter.Button(menu_window, text = "종료", command = closing, height = hei, width = wid, anchor = "s").place(
     x = a, y = 250)
 
 # 끝
