@@ -30,25 +30,18 @@ def paintering2():
     def paint_line(event):
         global lastx1, lasty1
         lastx1, lasty1 = event.x, event.y
+        canvas.create_line(event.x, event.y, event.x + 0.5, event.y + 0.5, fill = color, width = wid)
 
     def lining(event):
         global lastx1, lasty1
-        canvas.create_line(lastx1, lasty1, event.x, event.y)
+        canvas.create_line(lastx1, lasty1, event.x, event.y, fill = color, width = wid)
         lastx1, lasty1 = event.x, event.y
 
     # 마우스 휠로 크기(원의) 조정
     def scroll(event):
         global wid
-        if wid < 100:
-            if event.delta == 120:
-                wid += 1
-                label_wid.config(text = "굵기:" + str(wid))
-        if wid > 1:
-            if event.delta == -120:
-                wid -= 1
-                label_wid.config(text = "굵기:" + str(wid))
         if color == "SystemButtonFace":
-            if wid < 100:
+            if wid < 5:
                 if event.delta == 120:
                     wid += 1
                     label_wid.config(text = "지우개의 굵기:" + str(wid))
@@ -56,6 +49,15 @@ def paintering2():
                 if event.delta == -120:
                     wid -= 1
                     label_wid.config(text = "지우개의 굵기:" + str(wid))
+        else:
+            if wid < 5:
+                if event.delta == 120:
+                    wid += 1
+                    label_wid.config(text = "굵기:" + str(wid))
+            if wid > 1:
+                if event.delta == -120:
+                    wid -= 1
+                    label_wid.config(text = "굵기:" + str(wid))
 
     # 색 지정 커맨드
     def red_color():
@@ -92,6 +94,12 @@ def paintering2():
         canvas.config(cursor = "dotbox")
         label_wid.config(text = "지우개의 굵기:" + str(wid))
 
+    # 메뉴로 돌아가는 함수
+    def return_menu():
+        from painter_menu import painter_menuing
+        painting_window.destroy()
+        painter_menuing()
+
     # 라벨 생성
     label_wid = tkinter.Label(frame_label, text = "굵기:" + str(wid))
     label_wid.pack()
@@ -105,6 +113,7 @@ def paintering2():
     button3 = tkinter.Button(frame_button, text = "초록색", command = green_color, cursor = "pencil").pack()
     button4 = tkinter.Button(frame_button, text = "검정색", command = black_color, cursor = "pencil").pack()
     button5 = tkinter.Button(frame_button, text = "지우개", command = eraser, cursor = "dotbox").pack()
+    button6 = tkinter.Button(painting_window, text = "메뉴로 가기", command = return_menu).place(x = 1, y = 1)
 
     # 캔버스 설정 2
     canvas.bind("<B1-Motion>", lining)
