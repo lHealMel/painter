@@ -116,3 +116,6 @@ def paintering():
     canvas.pack()
 
     painting_window.mainloop()
+
+
+리포지터리 실험용
