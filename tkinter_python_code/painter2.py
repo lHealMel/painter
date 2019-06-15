@@ -99,6 +99,9 @@ def paintering2():
         painting_window.destroy()
         painter_menuing()
 
+    def all_clear():
+        canvas.delete("all")
+
     # 라벨 생성
     label_wid = tkinter.Label(frame_label, text = "굵기:" + str(wid))
     label_wid.pack()
@@ -113,6 +116,7 @@ def paintering2():
     button4 = tkinter.Button(frame_button, text = "검정색", command = black_color, cursor = "pencil").pack()
     button5 = tkinter.Button(frame_button, text = "지우개", command = eraser, cursor = "dotbox").pack()
     button6 = tkinter.Button(painting_window, text = "메뉴로 가기", command = return_menu).place(x = 1, y = 1)
+    button7 = tkinter.Button(painting_window, text = "모두 지우기", command = all_clear).place(x = 1, y = 35)
 
     # 캔버스 설정 2
     canvas.bind("<B1-Motion>", lining)
