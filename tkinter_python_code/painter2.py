@@ -2,7 +2,6 @@ import tkinter
 
 # 전역 변수 선언
 wid = 1
-# 딕셔너리 생성 #color = {"black" : "검은색", "red" : "빨간색", "yellow": "노란색", "green": "초록색"}
 color = "black"
 now_color = "검은색"
 lastx1, lasty1 = 0, 0
