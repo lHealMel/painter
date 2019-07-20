@@ -14,16 +14,24 @@ def paintering2():
     painting_window.resizable(0, 0)
     painting_window.title("그림판")
 
+
     # 프레임 설정
     frame_canvas = tkinter.Frame(painting_window, width = 600, height = 400, relief = "solid", bd = 2)
     frame_canvas.pack(side = "top")
     frame_label = tkinter.Frame(painting_window, width = 400, height = 100, relief = "solid", bd = 2)
     frame_label.pack()
-    frame_button = tkinter.Frame(painting_window, width = 600, height = 100, relief = "solid", bd = 2)
+    frame_button = tkinter.Frame(painting_window, width = 500, height = 500, relief = "solid", bd = 2)
     frame_button.pack(side = "bottom")
+    frame_button.place(x = 720)
 
     # 캔버스 설정
     canvas = tkinter.Canvas(frame_canvas, width = 600, height = 400, cursor = "pencil")
+
+   # 메뉴 설정
+    menu_bar = tkinter.Menu(painting_window)
+    menu1 = tkinter.Menu(menu_bar, tearoff = 0)
+
+
 
     # 페인트 변수 선언(사실은 원 그리기)
     def paint_line(event):
@@ -87,6 +95,7 @@ def paintering2():
         canvas.config(cursor = "pencil")
         label_color.config(text = "붓의 색:" + str(now_color), fg = color, bg = "SystemButtonFace")
 
+    # 지우개 커맨드
     def eraser():
         global color
         color = "SystemButtonFace"
@@ -110,13 +119,16 @@ def paintering2():
     label_color.pack(anchor = "center")
 
     # 버튼 생성
-    button1 = tkinter.Button(frame_button, text = "빨간색", command = red_color, cursor = "pencil").pack()
-    button2 = tkinter.Button(frame_button, text = "노란색", command = yellow_color, cursor = "pencil").pack()
-    button3 = tkinter.Button(frame_button, text = "초록색", command = green_color, cursor = "pencil").pack()
-    button4 = tkinter.Button(frame_button, text = "검정색", command = black_color, cursor = "pencil").pack()
-    button5 = tkinter.Button(frame_button, text = "지우개", command = eraser, cursor = "dotbox").pack()
-    button6 = tkinter.Button(painting_window, text = "메뉴로 가기", command = return_menu).place(x = 1, y = 1)
+    button1 = tkinter.Button(frame_button, command = red_color, cursor = "pencil", background = "red").pack(fill="x")
+    button2 = tkinter.Button(frame_button,  command = yellow_color, cursor = "pencil", bg = "yellow").pack(fill="x")
+    button3 = tkinter.Button(frame_button, command = green_color, cursor = "pencil", bg = "green").pack(fill="x")
+    button4 = tkinter.Button(frame_button,  command = black_color, cursor = "pencil", bg = "black").pack(fill="x")
+    button5 = tkinter.Button(frame_button, text = "지우개", command = eraser, cursor = "dotbox").pack(fill="x")
     button7 = tkinter.Button(painting_window, text = "모두 지우기", command = all_clear).place(x = 1, y = 35)
+
+    #메뉴 설정
+    menu_bar.add_cascade(label = "메뉴", menu=menu1)
+    menu1.add_command(label = "메뉴로 가기", command = return_menu)
 
     # 캔버스 설정 2
     canvas.bind("<B1-Motion>", lining)
@@ -124,4 +136,5 @@ def paintering2():
     canvas.bind("<MouseWheel>", scroll)
     canvas.pack()
 
+    painting_window.config(menu = menu_bar)
     painting_window.mainloop()
